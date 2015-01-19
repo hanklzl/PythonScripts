@@ -4,7 +4,8 @@ import requests
 import bs4
 from bs4 import BeautifulSoup
 import json
-
+import os
+import subprocess
 
 target_url = "http://www.jslink.org/shadowsocks.php" #从这个URL能获取到一个随机码，用这个随机码，加一个随机的小数作为数据就可以构造一个数据包，请求获取账号
 get_params_url = "http://www.jslink.org/about" #发送获取账号的URL
@@ -47,7 +48,7 @@ if response.status_code != 200:
 new_data = response.json()
 
 #打开ss的配置文件
-json_data = open('gui-config.json')
+json_data = open('../gui-config.json')
 data = json.load(json_data)
 #print(data)
 
@@ -61,7 +62,7 @@ for item in data['configs']:
 		item['server_port'] = new_data['server_port']
 		item['password'] = new_data['password']
 		is_config_exist = 1
-		with open('gui-config.json','w') as outfile:
+		with open('../gui-config.json','w') as outfile:
 			outfile.write(unicode(json.dumps(data,ensure_ascii=False)))
 		break
 
@@ -76,8 +77,11 @@ if(is_config_exist == 0):
 	new_item['method'] = new_data['method']
 	new_item['remarks'] = ""
 	data['configs'].append(new_item)
-	with open('gui-config.json','w') as outfile:
+	with open('../gui-config.json','w') as outfile:
 			outfile.write(unicode(json.dumps(data,ensure_ascii=False)))
 			
 print("update complete")
+print("starting app")
+#os.system("./shadowsocks.exe")
+subprocess.Popen(["../shadowsocks.exe"])
 exit()
