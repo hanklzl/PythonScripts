@@ -56,8 +56,8 @@ data = json.load(json_data)
 is_config_exist = 0
 for item in data['configs']:
 	if item['server'] == "106.186.127.95":
-		print(type(item))
-		print(type(new_data))
+		#print(type(item))
+		#print(type(new_data))
 		print('config file exist, edit it!')
 		item['server_port'] = new_data['server_port']
 		item['password'] = new_data['password']
