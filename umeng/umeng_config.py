@@ -16,3 +16,6 @@ PATH_BUILD_PROP = "build.prop"
 
 #build.prop中"ro.product.model"所在行的序号，从0开始算
 DEVICE_NAME_LINE_NUM = 14
+
+#如果使用TCP adb连接电脑，请在这里配置ip
+TCP_ADB_ADDR = "192.168.1.101"

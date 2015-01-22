@@ -7,13 +7,6 @@ import umeng_config
 import edit_build_prop
 
 def shuaji():
-#	(status, result) = commands.getstatusoutput("adb install -r LoveBirds_normao2.apk")
-#	if status == 0:
-#		print("安装成功")
-#	else:
-#		print("安装失败")
-#		print(result)
-#		return
 	print("打开应用")
 	(status, result) = commands.getstatusoutput("adb shell am start -n com.zoneol.lovebirds/.ui.WelcomeActivity")
 	if status == 0 :
@@ -48,6 +41,7 @@ while count < umeng_config.AMOUNT_OF_DEVICES :
 	(status, result) = commands.getstatusoutput("adb push build.prop /sdcard/")
 	sleep(10)
 	
+	print("启动mountsystem app，将修改过的build.prop 重定向到/system/build.prop中")
 	(status, result) = commands.getstatusoutput("adb shell am start -n com.example.mountsystem/.MainActivity")
 	if status == 0:
 		print("mount /system and modify build.prop success")
@@ -63,7 +57,11 @@ while count < umeng_config.AMOUNT_OF_DEVICES :
 	print("连接adb")
 	connect_time = 0
 	
-	(status,result) = commands.getstatusoutput("adb kill-server")
+	kill_time = 0
+	while(kill_time < 3):
+		(status,result) = commands.getstatusoutput("adb disconnect")
+		(status,result) = commands.getstatusoutput("adb kill-server")
+		kill_time += 1
 	
 	while True:
 		(status,result) = commands.getstatusoutput("adb connect 192.168.1.101")
