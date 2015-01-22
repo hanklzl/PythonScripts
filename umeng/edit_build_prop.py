@@ -7,6 +7,7 @@ import string
 
 def __get_random_device_name():
 	count = len(linecache.getlines(umeng_config.PATH_DEVICE_NAME))
+	print("device file has %d lines" % (count,))
 	line_num = random.randint(0,count - 1)
 	linecache.clearcache()
 	return linecache.getline(umeng_config.PATH_DEVICE_NAME,line_num)

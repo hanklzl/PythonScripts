@@ -7,7 +7,6 @@ import umeng_config
 import edit_build_prop
 
 def shuaji():
-	print("正在安装软件包")
 #	(status, result) = commands.getstatusoutput("adb install -r LoveBirds_normao2.apk")
 #	if status == 0:
 #		print("安装成功")
@@ -59,11 +58,8 @@ while count < umeng_config.AMOUNT_OF_DEVICES :
 	sleep(20)
 	
 	print("正在重启。。。。")
-	#(status, result) = commands.getstatusoutput("adb reboot")
-	#os.system("adb reboot")
 	sleep(40)
 	
-	#(status,result) = commands.getstatusoutput("adb connect 192.168.1.101")
 	print("连接adb")
 	connect_time = 0
 	
@@ -71,7 +67,6 @@ while count < umeng_config.AMOUNT_OF_DEVICES :
 	
 	while True:
 		(status,result) = commands.getstatusoutput("adb connect 192.168.1.101")
-		#os.system("adb connect 192.168.1.103")
 		if status == 0:
 			connect_time += 1;
 			print("连接adb成功")
