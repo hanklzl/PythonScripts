@@ -15,4 +15,4 @@ PATH_APK = "LoveBirds_normao2.apk"
 PATH_BUILD_PROP = "build.prop"
 
 #build.prop中"ro.product.model"所在行的序号，从0开始算
-DEVICE_NAME_LINE_NUM = 15
+DEVICE_NAME_LINE_NUM = 14
